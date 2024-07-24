@@ -54,9 +54,14 @@ class _OnboardState extends State<Onboard> {
                   const SizedBox(
                     height: 100,
                   ),
-                  SvgPicture.asset(
-                    contents[index].image,
-                    width: MediaQuery.of(context).size.width,
+                  Animate(
+                    effects: const [
+                      FadeEffect(duration: Duration(milliseconds: 500))
+                    ],
+                    child: SvgPicture.asset(
+                      contents[index].image,
+                      width: MediaQuery.of(context).size.width,
+                    ),
                   ),
                   const Spacer(),
                   Row(

@@ -26,6 +26,7 @@ class _MyTextFieldState extends State<MyTextField> {
       child: TextField(
         controller: widget.controller,
         onChanged: widget.onChange,
+        keyboardAppearance: Brightness.dark,
         decoration: InputDecoration(
           filled: true,
           fillColor: const Color(0xFF111111),

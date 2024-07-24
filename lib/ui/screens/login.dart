@@ -4,6 +4,7 @@ import 'package:flow/ui/components/text_input.dart';
 import 'package:flow/ui/screens/onboard.dart';
 import 'package:flow/ui/screens/sign_up.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 class Login extends StatefulWidget {
@@ -27,27 +28,34 @@ class _LoginState extends State<Login> {
           Navigator.push(context, MaterialPageRoute(builder: (context) => const Onboard(page: 2,)));
         }, icon: const Icon(Icons.arrow_back_ios, color: Colors.white),)
       ),
-      body: Column(children: [
-        const SizedBox(height: 30,),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Logo(),
-          ],
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Column(children: [
+            const SizedBox(height: 30,),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Logo(),
+              ],
+            ),
+            const SizedBox(height: 150,),
+              Expanded(
+                child: Animate(
+                  effects: const [
+                    FadeEffect(duration: Duration(milliseconds: 500)),
+                    SlideEffect(
+                      begin: Offset(0, 1),
+                      end: Offset.zero,
+                      duration: Duration(milliseconds: 300)
+                    )
+                  ],
+                  child: buildLoginForm(context),
+                ),
+              ),
+          ],),
         ),
-        const Spacer(),
-          Animate(
-            effects: const [
-              FadeEffect(duration: Duration(milliseconds: 500)),
-              SlideEffect(
-                begin: Offset(0, 1),
-                end: Offset.zero,
-                duration: Duration(milliseconds: 500)
-              )
-            ],
-            child: buildLoginForm(context),
-          ),
-      ],),
+      ),
     );
   }
 
